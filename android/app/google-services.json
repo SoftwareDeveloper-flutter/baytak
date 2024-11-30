@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "422516822490",
+    "project_id": "baytak-1c380",
+    "storage_bucket": "baytak-1c380.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422516822490:android:aceab33d3ed5e4c82f70e3",
+        "android_client_info": {
+          "package_name": "com.e"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkBFmLcCi_iCgM6_VPbjBEU9bnEtZfmu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
