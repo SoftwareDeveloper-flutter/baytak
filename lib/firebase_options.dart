@@ -41,48 +41,48 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCkNJ9wglpB_SX86BHjVIY9mAHZklLfJWY',
-    appId: '1:422516822490:web:597364602a6046802f70e3',
-    messagingSenderId: '422516822490',
-    projectId: 'baytak-1c380',
-    authDomain: 'baytak-1c380.firebaseapp.com',
-    storageBucket: 'baytak-1c380.firebasestorage.app',
-    measurementId: 'G-MRK2B4TVMG',
+    apiKey: 'AIzaSyDKZ-1rqIPiGvlD8BRXj2nTfKB3r3bGsJA',
+    appId: '1:916053568733:web:f6eae8e5658814959c3f34',
+    messagingSenderId: '916053568733',
+    projectId: 'baytak-36ccd',
+    authDomain: 'baytak-36ccd.firebaseapp.com',
+    storageBucket: 'baytak-36ccd.firebasestorage.app',
+    measurementId: 'G-LXEPNMJKQG',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAkBFmLcCi_iCgM6_VPbjBEU9bnEtZfmu0',
-    appId: '1:422516822490:android:aceab33d3ed5e4c82f70e3',
-    messagingSenderId: '422516822490',
-    projectId: 'baytak-1c380',
-    storageBucket: 'baytak-1c380.firebasestorage.app',
+    apiKey: 'AIzaSyDoK_uz6CXw2R3yJGe19aZljrLSj22f9Mc',
+    appId: '1:916053568733:android:fd380597237e983c9c3f34',
+    messagingSenderId: '916053568733',
+    projectId: 'baytak-36ccd',
+    storageBucket: 'baytak-36ccd.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBIWJdG9icUu4zTJw-apZzrCJ9Cjbu0lzg',
-    appId: '1:422516822490:ios:2181e7883d9a25192f70e3',
-    messagingSenderId: '422516822490',
-    projectId: 'baytak-1c380',
-    storageBucket: 'baytak-1c380.firebasestorage.app',
+    apiKey: 'AIzaSyB7DHTuiNzh8ZxotrHvZwnVibYwLV39psc',
+    appId: '1:916053568733:ios:06b4ea3c700f067a9c3f34',
+    messagingSenderId: '916053568733',
+    projectId: 'baytak-36ccd',
+    storageBucket: 'baytak-36ccd.firebasestorage.app',
     iosBundleId: 'com.example.baytak',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBIWJdG9icUu4zTJw-apZzrCJ9Cjbu0lzg',
-    appId: '1:422516822490:ios:2181e7883d9a25192f70e3',
-    messagingSenderId: '422516822490',
-    projectId: 'baytak-1c380',
-    storageBucket: 'baytak-1c380.firebasestorage.app',
+    apiKey: 'AIzaSyB7DHTuiNzh8ZxotrHvZwnVibYwLV39psc',
+    appId: '1:916053568733:ios:06b4ea3c700f067a9c3f34',
+    messagingSenderId: '916053568733',
+    projectId: 'baytak-36ccd',
+    storageBucket: 'baytak-36ccd.firebasestorage.app',
     iosBundleId: 'com.example.baytak',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCkNJ9wglpB_SX86BHjVIY9mAHZklLfJWY',
-    appId: '1:422516822490:web:6fa4ac09db7b19332f70e3',
-    messagingSenderId: '422516822490',
-    projectId: 'baytak-1c380',
-    authDomain: 'baytak-1c380.firebaseapp.com',
-    storageBucket: 'baytak-1c380.firebasestorage.app',
-    measurementId: 'G-Z208T967P8',
+    apiKey: 'AIzaSyDKZ-1rqIPiGvlD8BRXj2nTfKB3r3bGsJA',
+    appId: '1:916053568733:web:d4f04fadfce68dd09c3f34',
+    messagingSenderId: '916053568733',
+    projectId: 'baytak-36ccd',
+    authDomain: 'baytak-36ccd.firebaseapp.com',
+    storageBucket: 'baytak-36ccd.firebasestorage.app',
+    measurementId: 'G-2KC4H04MFF',
   );
 }
