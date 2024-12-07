@@ -7,10 +7,17 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool _obscureText = true;
+
+   void _toggleVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body:SingleChildScrollView(
       child:Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -61,6 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         child: TextFormField(
                           decoration: const InputDecoration(
+                            prefixIcon:  Icon(Icons.email),
                                enabledBorder: InputBorder.none,
                                focusedBorder: InputBorder.none,
                                disabledBorder: InputBorder.none,
@@ -78,8 +86,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             borderRadius: BorderRadius.circular(10)
                           ),
                         child: TextFormField(
-                          decoration: const InputDecoration(
-                            suffix: Icon(Icons.visibility_off,color:Colors.red),
+                        obscureText: _obscureText,
+                          decoration:  InputDecoration(
+                            prefixIcon:  const Icon(Icons.lock),
+                            suffix:IconButton(icon:const Icon(Icons.visibility_off,color:Colors.red),onPressed: _toggleVisibility),
                                enabledBorder: InputBorder.none,
                                focusedBorder: InputBorder.none,
                                disabledBorder: InputBorder.none,
@@ -111,6 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
       ),
+      
     );
   }
 }
