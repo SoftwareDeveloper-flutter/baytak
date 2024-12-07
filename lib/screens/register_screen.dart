@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:baytak/screens/login_screen.dart';
+import "package:baytak/utils/utils.dart";
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -16,6 +17,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _obscureText = !_obscureText;
     });
   }
+  final emailFocusNode=FocusNode();
+  final passwordFocusNode=FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,6 +72,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             borderRadius: BorderRadius.circular(10)
                           ),
                         child: TextFormField(
+                          focusNode: emailFocusNode,
+                          onFieldSubmitted:(value){
+                            Utils.fieldFocus(context, emailFocusNode, passwordFocusNode);
+                          },
                           decoration: const InputDecoration(
                             prefixIcon:  Icon(Icons.email),
                                enabledBorder: InputBorder.none,
@@ -88,6 +95,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             borderRadius: BorderRadius.circular(10)
                           ),
                         child: TextFormField(
+                          focusNode: passwordFocusNode,
                         obscureText: _obscureText,
                           decoration:  InputDecoration(
                             prefixIcon:  const Icon(Icons.lock),
