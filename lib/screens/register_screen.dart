@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+import 'package:baytak/screens/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -89,7 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         obscureText: _obscureText,
                           decoration:  InputDecoration(
                             prefixIcon:  const Icon(Icons.lock),
-                            suffix:IconButton(icon:const Icon(Icons.visibility_off,color:Colors.red),onPressed: _toggleVisibility),
+                            suffix:IconButton(icon:const Icon(Icons.visibility_off,color:Colors.black),onPressed: _toggleVisibility),
                                enabledBorder: InputBorder.none,
                                focusedBorder: InputBorder.none,
                                disabledBorder: InputBorder.none,
@@ -111,6 +113,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         onPressed:(){},
       
                         child:const Text("Sign Up",style:TextStyle(color:Colors.white))
+                      ),
+                    ),
+                    const SizedBox(height:5),
+                     Text.rich(
+                      TextSpan(
+                         text: 'Already have an account?',
+                        style:  const TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  
+                ),
+                children: [
+                  TextSpan(
+            text: 'Login', 
+            style: const  TextStyle(
+              fontSize: 16,
+              color: Colors.blue,
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.underline,
+            ),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder:(context)=>const LoginScreen())
+               );
+              },
+          ),
+                ]
                       ),
                     ),
                   ],
