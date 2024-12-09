@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:baytak/screens/login_screen.dart';
 import "package:baytak/utils/utils.dart";
-import 'package:fluttertoast/fluttertoast.dart';
+
 
 
 class RegisterScreen extends StatefulWidget {
