@@ -1,3 +1,5 @@
+import 'package:baytak/screens/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:baytak/screens/login_screen.dart';
@@ -19,8 +21,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
   final emailFocusNode=FocusNode();
   final passwordFocusNode=FocusNode();
+  String _errorMessage = '';
+  final TextEditingController emailController= TextEditingController();
+  final TextEditingController passwordController= TextEditingController();
   @override
   Widget build(BuildContext context) {
+    Future<void> signUp() async {
+    try {
+       if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+      setState(() {
+        _errorMessage = 'Please fill in both email and password.';
+      });
+      return;
+    }
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      Future.microtask(() {
+      Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>const HomeScreen()));
+      });
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'Sign Up failed: ${e.toString()}';
+      });
+    }
+  }
+
     return Scaffold(
       body:SingleChildScrollView(
       child:Container(
@@ -76,6 +103,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onFieldSubmitted:(value){
                             Utils.fieldFocus(context, emailFocusNode, passwordFocusNode);
                           },
+                           controller: emailController,
+                        onSaved: (value){
+                        emailController.text=value!;
+                        },
+                      textInputAction:TextInputAction.next,
                           decoration: const InputDecoration(
                             prefixIcon:  Icon(Icons.email),
                                enabledBorder: InputBorder.none,
@@ -95,6 +127,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             borderRadius: BorderRadius.circular(10)
                           ),
                         child: TextFormField(
+                           controller: passwordController,
+                        onSaved: (value){
+                        passwordController.text=value!;
+                        },
+                      textInputAction:TextInputAction.done,
                           focusNode: passwordFocusNode,
                         obscureText: _obscureText,
                           decoration:  InputDecoration(
@@ -118,7 +155,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       borderRadius: BorderRadius.circular(8),
                       child:MaterialButton(
                         minWidth: double.infinity,
-                        onPressed:(){},
+                        onPressed:(){
+                          signUp();
+                        },
       
                         child:const Text("Sign Up",style:TextStyle(color:Colors.white))
                       ),
@@ -149,9 +188,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                );
               },
           ),
+          
                 ]
                       ),
                     ),
+                     if (_errorMessage.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text(_errorMessage, style: const TextStyle(color: Colors.red)),
+                        ),
                   ],
                 ),
               ),

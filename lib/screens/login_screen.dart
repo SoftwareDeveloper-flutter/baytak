@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:baytak/screens/register_screen.dart';
@@ -17,8 +18,31 @@ class _LoginScreenState extends State<LoginScreen> {
       _obscureText = !_obscureText;
     });
   }
+  String _errorMessage = '';
+  final TextEditingController emailController= TextEditingController();
+  final TextEditingController passwordController= TextEditingController();
   @override
   Widget build(BuildContext context) {
+    Future<void> login() async {
+    try {
+       if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+      setState(() {
+        _errorMessage = 'Please fill in both email and password.';
+      });
+      return;
+    }
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+ 
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'Login failed: ${e.toString()}';
+      });
+    }
+  }
+
     return Scaffold(
       body:SingleChildScrollView(
       child:Container(
@@ -57,6 +81,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(10)
                           ),
                         child: TextFormField(
+                            controller: emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            onSaved: (value){
+                              emailController.text=value!;
+                            },
+                          textInputAction:TextInputAction.next,
                             focusNode: emailFocusNode,
                           onFieldSubmitted:(value){
                             Utils.fieldFocus(context, emailFocusNode, passwordFocusNode);
@@ -80,6 +110,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(10)
                           ),
                         child: TextFormField(
+                        autofocus:false,
+                        controller: passwordController,
+                        onSaved: (value){
+                        passwordController.text=value!;
+                        },
+                      textInputAction:TextInputAction.done,
                            focusNode: passwordFocusNode,
                         obscureText: _obscureText,
                           decoration:  InputDecoration(
@@ -97,13 +133,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
 
                    const SizedBox(height:20),
+                     if (_errorMessage.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text(_errorMessage, style: const TextStyle(color: Colors.red)),
+                        ),
                      Material(
                       color: Colors.black,
                       elevation: 6,
                       borderRadius: BorderRadius.circular(8),
                       child:MaterialButton(
                         minWidth: double.infinity,
-                        onPressed:(){},
+                        onPressed:(){
+                         login();
+                        },
       
                         child:const Text("Sign Up",style:TextStyle(color:Colors.white))
                       ),
