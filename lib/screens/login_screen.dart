@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:baytak/screens/register_screen.dart';
+import 'package:baytak/screens/home_screen.dart';
 import "package:baytak/utils/utils.dart";
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -25,6 +26,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     Future<void> login() async {
     try {
+       setState(() {
+        _errorMessage = '';
+      });
        if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       setState(() {
         _errorMessage = 'Please fill in both email and password.';
@@ -35,7 +39,16 @@ class _LoginScreenState extends State<LoginScreen> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
- 
+  Future.microtask(() {
+         ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text("Login Successful!"),
+      duration: Duration(seconds: 2),
+    ),
+  ).closed.then((_) {
+      Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>const HomeScreen()));
+      });
+      });
     } catch (e) {
       setState(() {
         _errorMessage = 'Login failed: ${e.toString()}';
@@ -148,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                          login();
                         },
       
-                        child:const Text("Sign Up",style:TextStyle(color:Colors.white))
+                        child:const Text("Login",style:TextStyle(color:Colors.white))
                       ),
                     ),
                     const SizedBox(height:20),

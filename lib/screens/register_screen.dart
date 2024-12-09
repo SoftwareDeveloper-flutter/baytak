@@ -1,9 +1,10 @@
-import 'package:baytak/screens/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:baytak/screens/login_screen.dart';
 import "package:baytak/utils/utils.dart";
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -27,6 +28,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     Future<void> signUp() async {
+      setState(() {
+        _errorMessage = '';
+      });
     try {
        if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       setState(() {
@@ -39,7 +43,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
         password: passwordController.text.trim(),
       );
       Future.microtask(() {
-      Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>const HomeScreen()));
+         ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text("Sign Up Successful!"),
+      duration: Duration(seconds: 2),
+    ),
+  ).closed.then((_) {
+      Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>const LoginScreen()));
+      });
       });
     } catch (e) {
       setState(() {
@@ -62,7 +73,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               ClipOval(
                 child: Image.asset('assets/images/logo.png',
-                    height: 150, width: 150),
+                    height: 90, width: 90),
               ),
               const Text("Sign Up Here!",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900)),
